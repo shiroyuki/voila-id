@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    {{ _css([
+        'vendors/bootstrap-3.1.0/css/bootstrap.min.css',
+        'css/base.css'
+    ]) }}
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Create a new account</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9">
+                <form action="{{ app.path('admin.profile.list') }}" method="POST" class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">agree</button>
+                </form>
+            </div>
+            <div class="col-sm-3">
+                <p>
+                    By signing up, you will be assumed to agree to our simple rules:
+                </p>
+            </div>
+        </div>
+    </div>
+    {{ _js([
+        'vendors/bootstrap-3.1.0/js/bootstrap.min.js',
+        'js/include/form.js'
+    ]) }}
+</body>
+</html>

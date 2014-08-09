@@ -1,3 +1,11 @@
+# Application-specific
+# -- SCSS cache
+.sass-cache
+# -- Customize settings
+config/config.json
+# -- Developmental session storage
+session.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application>
+    <include src="base.xml"/> <!-- include from other configuration files -->
+    <server>
+        <debug>true</debug>
+        <port>8000</port>
+    </server>
+    <routes>
+    </routes>
+    <service>service.xml</service>
+</application>
+

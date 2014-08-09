@@ -1,0 +1,14 @@
+{%- import 'include/basic.html' as basic with context -%}
+
+{%- macro main_navigation(kind = 'default') -%}
+    {%- set actions = [
+        ('Log in', app.path('authentication'))
+    ] -%}
+    {%- if app.settings['enable_registration'] -%}
+        {%- set actions = [
+            ('Log in',  app.path('authentication')),
+            ('Sign up', app.path('user.new'))
+        ] -%}
+    {%- endif -%}
+    {{ basic.main_navigation(actions, kind) }}
+{%- endmacro -%}

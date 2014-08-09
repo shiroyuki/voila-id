@@ -1,0 +1,85 @@
+@import 'css3';
+@import 'element';
+
+* {
+    text-transform: uppercase;
+}
+
+body {
+    background-color: #ff9900;
+    color: #fff;
+}
+
+article {
+    @include transition(all, 500ms);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -140px;
+    text-align: center;
+    width: 280px;
+    padding: 60px 20px;
+}
+
+.navbar.main {
+    background-color: transparent !important;
+    border: none;
+
+    a {
+        color: #fff !important;
+    }
+
+    .navbar-toggle {
+        border: none;
+    }
+
+    .navbar-collapse {
+        position: relative;
+        z-index: 1;
+        background-color: #333;
+        background-color: transparent !important;
+    }
+}
+
+header {
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.avatar {
+        img {
+            display: inline-block;
+            margin-bottom: 20px;
+            border-radius: 200px;
+        }
+
+        img[src=""] {
+            margin-bottom: 0;
+            display: none;
+        }
+    }
+
+form {
+    .username {
+        margin-bottom: 10px;
+    }
+
+    .password {
+        margin-bottom: 20px;
+    }
+
+    input {
+        @include input-text(#000, #fff);
+        font-size: 20px;
+        font-weight: 200;
+    }
+
+    .login {
+        @include transition(all, 500ms);
+        @include button(#ff9900, #ffffff);
+        font-size: 20px;
+        font-weight: 200;
+    }
+}

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application>
+    <server>
+        <secret></secret>
+        <!-- <error>app.web.controller.ErrorController</error> -->
+    </server>
+    <use src="config.json"/>
+    <routes>
+        <resource id="static" location="static" pattern="/static/**" cache="false"/>
+        <controller id="util.gravatar.url" class="sso.util.Gravatar" pattern="/util/gravatar"/>
+        <controller id="admin.profile.single" class="sso.admin.profile.ProfileController" pattern="/admin/profile/{key}"/>
+        <controller id="admin.profile.list" class="sso.admin.profile.ProfileController" pattern="/admin/profile/"/>
+        <controller id="user.profile" class="sso.profile.ProfileController" pattern="/profile/{key}"/>
+        <controller id="user.new" class="sso.profile.RegistrationController" pattern="/registration"/>
+        <controller id="deauthentication" class="sso.authentication.Deauthentication" pattern="/deauthentication"/>
+        <controller id="authentication" class="sso.authentication.Authentication" pattern="/authentication"/>
+        <controller id="relay" class="sso.relay.Relay" pattern="/relay"/>
+        <controller id="profiler" class="sso.util.ProfilerController" pattern="/dev/profiler"/>
+        <redirection pattern="/" destination="/authentication"/>
+    </routes>
+</application>

@@ -1,0 +1,53 @@
+{%- macro profile_data_table(profile, rendering_data) -%}
+    <div class="component profile view" data-guid="{{ profile.id }}">
+        <h1>{{ profile.username }}</h1>
+        <table class="table">
+            <tbody>
+                {%- for p in rendering_data -%}
+                    {%- if 'r' in p.mode -%}
+                        <tr data-property="{{ p.property }}">
+                            <th class="dt-label">
+                                <span class="glyphicon glyphicon-{{ p.icon }}"></span>
+                                <span class="inner-label">{{ p.label }}</span>
+                            </th>
+                            <td class="dt-value"><span class="inner-value">{{ p.value }}</span></td>
+                        </tr>
+                    {%- endif -%}
+                {%- endfor -%}
+            </tbody>
+        </table>
+    </div>
+{%- endmacro -%}
+
+{%- macro profile_edit_form(profile, rendering_data) -%}
+    <div class="component profile edit" data-guid="{{ profile.id }}">
+        <h1>{{ profile.username }}</h1>
+        <form action="{{ app.path('user.profile', key = profile.id) }}" method="put" role="form">
+            {%- for p in rendering_data -%}
+                {%- if 'w' in p.mode -%}
+                    {%- set input_id = 'fi-' + profile.id | string + '-' + p.property -%}
+                    <div class="form-group" data-property="{{ p.property }}">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-{{ p.icon }}"></span></span>
+                            <label for="{{ input_id }}" class="fi-label sr-only">
+                                <span class="glyphicon glyphicon-{{ p.icon }}"></span>
+                                <span class="inner-label">{{ p.label }}</span>
+                            </label>
+                            <input id="{{ input_id }}"
+                                class="fi-input form-control"
+                                type="{{ p.kind }}"
+                                placeholder="{{ p.label }}"
+                                {% if p.value %}value="{{ p.value }}"{% endif %}
+                                {% if 'x' in p.mode %}required{% endif %}
+                            >
+                        </div>
+                    </div>
+                {%- endif -%}
+            {%- endfor -%}
+
+            <div class="actions">
+                <button class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+{%- endmacro -%}

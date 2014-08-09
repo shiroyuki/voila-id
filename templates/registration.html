@@ -1,0 +1,89 @@
+{%- import 'include/basic.html' as basic -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{ basic.header(app, 'Registration') }}
+    {{ _css([
+        'vendors/bootstrap-3.1.0/css/bootstrap.min.css',
+        'css/base.css',
+        'css/registration.css'
+    ]) }}
+</head>
+<body>
+    {% include '_public_header.html' %}
+    <div class="main container" data-mode="stdby">
+        <div class="feedback">
+            <div class="avatar"><img/></div>
+            <div class="status">Identifying...</div>
+        </div>
+        <div class="application-form row">
+            <div class="col-sm-12">
+                <h1>Create a new account</h1>
+            </div>
+        </div>
+        <div class="application-form row">
+            <div class="col-md-9">
+                <form action="{{ app.path('user.new') }}" method="POST">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="username" placeholder="What is your username?" value="{{ app.settings.default.username }}" required>
+                                <p class="help-block">Just as anything you want everyone else to refer to.</p>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="name" placeholder="What is your name?" value="{{ app.settings.default.name }}" required>
+                                <p class="help-block">Just as anything you want everyone else to call.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <input type="email" class="form-control" name="email" placeholder="What is your e-mail address?" value="{{ app.settings.default.email }}" required>
+                                <p class="help-block">Used for login and just in case we need to communicate with you.</p>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" name="plain_password" placeholder="What about your password?" value="{{ app.settings.default.password }}" required>
+                                <p class="help-block"><a class="btn btn-info btn-xs">Show / hide the password</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="actions">
+                        <button type="submit" class="btn btn-primary">Sign up</button>
+                        or <a href="{{ app.path('authentication') }}">sign in</a>
+                    </p>
+                </form>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Read this first!</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            By signing up, you will be assumed to agree to our simple rules:
+                        </p>
+                        <ol>
+                            <li>Be fair and nice with everyone. (Do not abuse the service.)</li>
+                            <li>Do not use for illegal activities.</li>
+                        </ol>
+                        <p>
+                            Failing to comply the rules and warnings may lead to service
+                            usage suspension. Some cases may lead to criminal investigation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    login_url = "{{ app.path('authentication') }}";
+    gravatar_service_url = "{{ app.path('util.gravatar.url')}}";
+    </script>
+    {{ _js([
+        'vendors/jquery.js',
+        'vendors/bootstrap-3.1.0/js/bootstrap.min.js',
+        'js/include/form.js',
+        'js/include/gravatar.js',
+        'js/registration.js'
+    ]) }}
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+    "name": "ID Service",
+    "enable_registration": true,
+    "asset_manager": {
+        "path_map": {
+            "default": "/static/{}"
+        }
+    },
+    "security": {
+        "master_access": null
+    },
+    "session": {
+        "class": "sso.util.FileSessionRepository",
+        "params": {
+            "location": "session.json"
+        }
+    },
+    "db": {
+        "managers": {
+            "default": {
+                "url": "mongodb://localhost/palina"
+            }
+        }
+    },
+    "default": {
+        "username": "",
+        "name":     "",
+        "email":    "",
+        "password": ""
+    }
+}

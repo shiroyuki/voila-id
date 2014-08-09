@@ -1,0 +1,30 @@
+img {
+    max-width: 100%;
+    border-radius: 400px;
+}
+
+h1 {
+    font-weight: 200;
+}
+
+.avater-outer {
+    text-align: right;
+
+    .avatar {
+        display: inline-block;
+    }
+}
+
+.profile.view {
+    margin-top: 25px;
+
+    .table .dt-label {
+        width: 100px;
+    }
+
+    [data-property="id"] {
+        .inner-value {
+            font-family: monospace;
+        }
+    }
+}

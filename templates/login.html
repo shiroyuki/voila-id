@@ -1,0 +1,42 @@
+{%- import 'include/basic.html' as basic with context -%}
+{%- import 'include/public.html' as public with context -%}
+<!doctype html>
+<html>
+<head>
+    {{ basic.header(app, 'Registration') }}
+    {{ _css([
+        'vendors/bootstrap-3.1.0/css/bootstrap.min.css',
+        'css/base.css',
+        'css/login.css'
+    ]) }}
+</head>
+<body>
+{{ public.main_navigation() }}
+<article>
+    <header>Shiroyuki Studio</header>
+
+    <div class="avatar"><img src=""/></div>
+
+    <form action="{{ app.path('authentication') }}" method="POST">
+        <div class="username">
+            <input name="key" type="email" placeholder="e-mail address" value="{{ app.settings.default.email }}" required/>
+        </div>
+        <div class="password">
+            <input name="password" type="password" placeholder="password" value="{{ app.settings.default.password }}"{% if not app.settings.security.master_access %} required{% endif %}/>
+        </div>
+        <div class="actions">
+            <button type="submit" class="login" data-stdby="Login" data-progress="Logging in..." data-done="Logged in">Login</button>
+        </div>
+    </form>
+</article>
+<script>
+relay_url = "{{ app.path('relay') }}";
+</script>
+{{ _js([
+    'vendors/jquery.js',
+    'vendors/bootstrap-3.1.0/js/bootstrap.min.js',
+    'js/include/form.js',
+    'js/login.js'
+]) }}
+</body>
+</html>

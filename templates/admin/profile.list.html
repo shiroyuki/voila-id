@@ -1,0 +1,24 @@
+{%- import 'include/basic.html' as basic -%}
+<!DOCTYPE html>
+<html>
+<head>
+    {{ _css([
+        'vendors/bootstrap-3.1.0/css/bootstrap.min.css',
+        'css/base.css'
+    ]) }}
+</head>
+<body>
+    {%- include 'admin/_header.html' -%}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2">
+                {%- include 'admin/_menu.html' -%}
+            </div>
+        </div>
+    </div>
+    {{ _js([
+        'vendors/jquery.js',
+        'vendors/bootstrap-3.1.0/js/bootstrap.min.js'
+    ]) }}
+</body>
+</html>

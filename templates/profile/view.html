@@ -1,0 +1,37 @@
+{%- import 'include/basic.html' as basic with context -%}
+{%- import 'include/component.html' as component with context -%}
+{%- set auth_pass    = app.session('auth') -%}
+{%- set auth_profile = auth_pass.profile -%}
+{%- set username     = auth_profile.username if auth_profile else auth_pass.username -%}
+<!DOCTYPE html>
+<html>
+<head>
+    {{ _css([
+        'vendors/bootstrap-3.1.0/css/bootstrap.min.css',
+        'css/base.css',
+        'css/profile/view.css'
+    ]) }}
+</head>
+<body>
+    {{ basic.main_navigation([
+        (username,  app.path('user.profile', key = username)),
+        ('Log out', app.path('deauthentication')),
+    ]) }}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3 avater-outer">
+                <img class="avatar" src="{{ _gurl(profile.email, 160) }}">
+            </div>
+            <div class="col-sm-9">
+                {{ component.profile_data_table(profile, profile_rendering_data) }}
+                {{ component.profile_edit_form(profile, profile_rendering_data) }}
+            </div>
+        </div>
+    </div>
+    {{ _js([
+        'vendors/jquery.js',
+        'vendors/bootstrap-3.1.0/js/bootstrap.min.js',
+        'js/profile/view.js'
+    ]) }}
+</body>
+</html>

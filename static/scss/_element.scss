@@ -1,0 +1,49 @@
+@mixin input-text($fcolor, $bcolor) {
+    background-color: $bcolor;
+    color: $fcolor;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    text-transform: none;
+
+    &:invalid {
+        color: #cc0000;
+    }
+}
+
+@mixin input-text-custom($fcolor, $bcolor, $hcolor) {
+    outline: none;
+    background-color: $bcolor;
+    border: 2px solid transparent;
+    color: $fcolor;
+    padding: 3px 8px;
+    border-radius: 5px;
+
+    &:focus {
+        border-color: $hcolor;
+    }
+
+    &:invalid {
+        color: #cc0000;
+        border-color: #cc0000;
+    }
+}
+
+@mixin button($fcolor, $bcolor) {
+    display: inline-block;
+    cursor: pointer;
+    background-color: $bcolor;
+    color: $fcolor;
+    padding: 8px 16px;
+    border-radius: 10px;
+    text-decoration: none;
+    border: none;
+
+    &:hover, &:focus {
+        @include filter(drop-shadow(rgba(0, 0, 0, 0.3) 0 2px 2px));
+    }
+
+    &[disabled] {
+        @include filter(opacity(0.5));
+    }
+}

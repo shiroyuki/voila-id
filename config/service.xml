@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<imagination>
+    <!-- See the documentation of Imagination at http://shiroyuki.com/work/project-imagination. -->
+    <!--
+    <entity id="css-compressor"
+            class="tori.service.data.compressor.CSSCompressor"
+            tags="resource-service-plugin"
+    />
+    -->
+    <entity id="entity.serializer" class="tori.db.common.Serializer"/>
+    <entity id="profile" class="sso.model.profile.ProfileService">
+        <param name="database_factory" type="entity">db</param>
+    </entity>
+    <entity id="gravatar" class="sso.util.GravatarService"/>
+    <entity id="password" class="sso.security.PasswordService"/>
+</imagination>

@@ -1,0 +1,10 @@
+@import 'font';
+
+body, input, button {
+    @include font-sans-serif-set();
+}
+
+.navbar.main {
+    border-radius: 0;
+    font-weight: 200;
+}

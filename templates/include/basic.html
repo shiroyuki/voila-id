@@ -1,0 +1,43 @@
+{%- macro header(app, section = None) -%}
+    <title>
+        {{ app.settings['name'] }}
+        {% if section %}- {{ section }}{% endif %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+{%- endmacro -%}
+
+{%- macro vendor_js(files) -%}
+    {%- for file in files -%}
+        <link rel="stylesheet" href="/static/vendor/{{ file }}.css"/>
+    {%- endfor -%}
+{%- endmacro -%}
+
+{%- macro css(files) -%}
+    {%- for file in files -%}
+        <link rel="stylesheet" href="/static/css/{{ file }}.css"/>
+    {%- endfor -%}
+{%- endmacro -%}
+
+{%- macro js(files) -%}
+    {%- for file in files -%}
+        <script src="/static/{{ file }}.js"></script>
+    {%- endfor -%}
+{%- endmacro -%}
+
+{%- macro main_navigation(actions = [], kind = 'default') -%}
+    <nav class="navbar main navbar-{{ kind }}" role="navigation">
+        <div class="container">
+            {% include '_header_brand.html' %}
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav"></ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    {%- for label, path in actions -%}
+                        <li><a href="{{ path }}">{{ label }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+{%- endmacro -%}

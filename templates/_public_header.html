@@ -1,0 +1,16 @@
+<nav class="navbar main navbar-inverse" role="navigation">
+    <div class="container">
+        {% include '_header_brand.html' %}
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav"></ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ app.path('authentication') }}">Log in</a></li>
+                {% if app.settings['enable_registration'] %}
+                    <li><a href="{{ app.path('user.new') }}">Sign up</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
