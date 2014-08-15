@@ -71,8 +71,41 @@ class ProfileController(SecuredController):
         )
 
     def put(self, key):
-        if self._is_auth(): return self.set_status(403)
-    
+        if not self._is_auth():
+            return self.set_status(403)
+
+        if self._auth_pass['profile']['id'] != key:
+            return self.set_status(403)
+
+        profile_service  = self.component('profile')
+        password_service = self.component('password')
+
+        profile = profile_service.find_by_id(key)
+
+        name  = self.get_argument('name', None)
+        email = self.get_argument('email', None)
+
+        plain_password = self.get_argument('plain_password', None)
+
+        if name:
+            profile.name = name
+
+        if email:
+            profile.email = email
+
+        if plain_password:
+            profile.phash = password_service.compute(plain_password, profile.psalt)
+
+        if name or email or plain_password:
+            profile_service  = self.component('profile')
+            password_service = self.component('password')
+
+            profile_service.save(profile)
+
+            return
+
+        return self.set_status(201)
+
     def _convert_profile_to_rendering_data(self, profile):
         return [
             self._make_data_field('id', 'GUID', 'qrcode', str(profile.id), None, 'r'),
@@ -80,7 +113,7 @@ class ProfileController(SecuredController):
             self._make_data_field('email', 'E-mail', 'envelope', profile.email, 'email', 'rwx'),
             self._make_data_field('plain_password', 'New Password (optional)', 'lock', None, 'password', 'w')
         ]
-    
+
     def _make_data_field(self, property, label, icon, value, kind, mode):
         return {
             'property': property,

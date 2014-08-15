@@ -36,10 +36,11 @@ function main() {
         };
 
         onError = function () {
-            alert('Unable to authenticate you at the moment. Please try again.');
-            $inputs.parent().show();
-            $button.attr('disabled', false);
-            $button.html($button.attr('data-stdby'));
+            $('body').append([
+                '<div style="z-index: 10; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #000; padding: 60px; color: #cc0000; font-size: 24px; font-weight: 200;">',
+                    'We are not ready to log you in at the moment. Please try again later.',
+                '</div>'
+            ].join(''))
         };
 
         form.submit({
@@ -47,7 +48,8 @@ function main() {
             statusCode: {
                 400: onFailure,
                 403: onSuccess,
-                405: onFailure
+                405: onFailure,
+                500: onError
             }
         });
     });

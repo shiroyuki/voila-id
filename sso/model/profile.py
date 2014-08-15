@@ -5,11 +5,13 @@ class ProfileService(object):
     def __init__(self, database_factory):
         self._database_factory = database_factory
 
-    def repository(self):
         database = self._database_factory.get('default')
-        session  = database.open_session()
+        session  = database.open_session('primary')
 
-        return session.repository(Profile)
+        self._session = session
+
+    def repository(self):
+        return self._session.repository(Profile)
 
     def find_by_id(self, id):
         repository = self.repository()

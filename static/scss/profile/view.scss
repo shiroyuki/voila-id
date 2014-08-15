@@ -15,6 +15,15 @@ h1 {
     }
 }
 
+.primary-panel {
+    position: relative;
+}
+
+.actions.data-control {
+    position: absolute;
+    right: 15px;
+}
+
 .profile.view {
     margin-top: 25px;
 
@@ -26,5 +35,46 @@ h1 {
         .inner-value {
             font-family: monospace;
         }
+    }
+}
+
+body {
+    .editor-trigger .octicon-x {
+        display: none;
+    }
+
+    .profile.edit {
+        display: none;
+    }
+}
+
+body.editor-enabled {
+    .editor-trigger {
+        border-color: #cc0000;
+        background-color: #cc0000;
+        color: #fff;
+        border-radius: 40px;
+
+        .octicon-pencil {
+            display: none;
+        }
+
+        .octicon-x {
+            display: inline;
+        }
+        
+        &:hover {
+            border-color: #cc0000;
+            background-color: #cc0000;
+            color: #fff;
+        }
+    }
+
+    .profile.view {
+        display: none;
+    }
+
+    .profile.edit {
+        display: block;
     }
 }

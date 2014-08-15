@@ -1,4 +1,4 @@
-{%- macro header(app, section = None) -%}
+{%- macro header(section = None) -%}
     <title>
         {{ app.settings['name'] }}
         {% if section %}- {{ section }}{% endif %}

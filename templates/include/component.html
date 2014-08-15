@@ -1,3 +1,11 @@
+{%- macro ot_icon(name) -%}
+<span class="octicon octicon-{{ name }}"></span>
+{%- endmacro -%}
+
+{%- macro bt_icon(name) -%}
+<span class="glyphicon glyphicon-{{ name }}"></span>
+{%- endmacro -%}
+
 {%- macro profile_data_table(profile, rendering_data) -%}
     <div class="component profile view" data-guid="{{ profile.id }}">
         <h1>{{ profile.username }}</h1>
@@ -7,7 +15,7 @@
                     {%- if 'r' in p.mode -%}
                         <tr data-property="{{ p.property }}">
                             <th class="dt-label">
-                                <span class="glyphicon glyphicon-{{ p.icon }}"></span>
+                                {{ bt_icon(p.icon) }}
                                 <span class="inner-label">{{ p.label }}</span>
                             </th>
                             <td class="dt-value"><span class="inner-value">{{ p.value }}</span></td>
@@ -28,13 +36,14 @@
                     {%- set input_id = 'fi-' + profile.id | string + '-' + p.property -%}
                     <div class="form-group" data-property="{{ p.property }}">
                         <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-{{ p.icon }}"></span></span>
+                            <span class="input-group-addon">{{ bt_icon(p.icon) }}</span>
                             <label for="{{ input_id }}" class="fi-label sr-only">
-                                <span class="glyphicon glyphicon-{{ p.icon }}"></span>
+                                {{ bt_icon(p.icon) }}
                                 <span class="inner-label">{{ p.label }}</span>
                             </label>
                             <input id="{{ input_id }}"
                                 class="fi-input form-control"
+                                name="{{ p.property }}"
                                 type="{{ p.kind }}"
                                 placeholder="{{ p.label }}"
                                 {% if p.value %}value="{{ p.value }}"{% endif %}
