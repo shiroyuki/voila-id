@@ -15,7 +15,7 @@ default:
 	@echo 'For more options, run "./console".'
 
 service: css
-	@$(PYI) server.py $(SERVICE_FLAG)
+	@$(PYI) voila_id.py $(SERVICE_FLAG)
 
 web:
 	sphinx-build -b html -d $(STATIC_DOCTREE_PATH) $(STATIC_SOURCE_PATH) $(STATIC_HTML_PATH)
