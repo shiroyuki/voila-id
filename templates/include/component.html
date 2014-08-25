@@ -1,3 +1,18 @@
+{%- macro input(name, label, kind, required, default, hint) -%}
+    <div class="form-group">
+        <input name="{{ name }}"
+            placeholder="{{ label }}"
+            type="{{ kind or 'text' }}"
+            class="form-control"
+            value="{{ default or '' }}"
+            required
+        >
+        {%- if hint -%}
+            <p class="help-block">{{ hint }}</p>
+        {%- endif -%}
+    </div>
+{%- endmacro -%}
+
 {%- macro ot_icon(name) -%}
 <span class="octicon octicon-{{ name }}"></span>
 {%- endmacro -%}

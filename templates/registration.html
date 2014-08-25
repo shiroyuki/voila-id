@@ -1,8 +1,9 @@
-{%- import 'include/basic.html' as basic -%}
+{%- import 'include/basic.html' as basic with context -%}
+{%- import 'include/component.html' as c with context -%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {{ basic.header(app, 'Registration') }}
+    {{ basic.header('Registration') }}
     {{ _css([
         'vendors/bootstrap-3.1.0/css/bootstrap.min.css',
         'css/base.css',
@@ -26,24 +27,34 @@
                 <form action="{{ app.path('user.new') }}" method="POST">
                     <div class="row">
                         <div class="col-sm-5">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="username" placeholder="What is your username?" value="{{ app.settings.default.username }}" required>
-                                <p class="help-block">Just as anything you want everyone else to refer to.</p>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="name" placeholder="What is your name?" value="{{ app.settings.default.name }}" required>
-                                <p class="help-block">Just as anything you want everyone else to call.</p>
-                            </div>
+                            {{ c.input(
+                                'username', 'What is your username?',
+                                default  = app.settings.default.username,
+                                required = true,
+                                hint     = 'This is what people refer as you.'
+                            ) }}
+                            {{ c.input(
+                                'name', 'What is your name?',
+                                default  =  app.settings.default.name,
+                                required = true,
+                                hint     = 'Just anything you want to be called.'
+                            ) }}
                         </div>
                         <div class="col-sm-7">
-                            <div class="form-group">
-                                <input type="email" class="form-control" name="email" placeholder="What is your e-mail address?" value="{{ app.settings.default.email }}" required>
-                                <p class="help-block">Used for login and just in case we need to communicate with you.</p>
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" name="plain_password" placeholder="What about your password?" value="{{ app.settings.default.password }}" required>
-                                <p class="help-block"><a class="btn btn-info btn-xs">Show / hide the password</a></p>
-                            </div>
+                            {{ c.input(
+                                'email', 'What is your e-mail address?',
+                                kind     = 'email',
+                                default  =  app.settings.default.email,
+                                required = true,
+                                hint     = 'Used for login and just in case we need to communicate with you.'
+                            ) }}
+                            {{ c.input(
+                                'plain_password', 'What is your password?',
+                                kind     = 'password',
+                                default  =  app.settings.default.password,
+                                required = true,
+                                hint     = '<a class="btn btn-info btn-xs password-toggle">Show / hide the password</a>'
+                            ) }}
                         </div>
                     </div>
                     <p class="actions">

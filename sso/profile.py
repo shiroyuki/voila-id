@@ -64,6 +64,9 @@ class ProfileController(SecuredController):
 
         profile = directory.find_by_id(key)
 
+        if not profile:
+            raise RuntimeError('Failed to retrieve the profile.')
+
         self.render(
             'profile/view.html',
             profile = profile,

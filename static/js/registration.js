@@ -55,6 +55,22 @@ function main() {
         });
     }
 
+    function onPasswordToggle(e) {
+        var $input = form.context.find('[name=plain_password]'),
+            inputType = 'password'
+        ;
+
+        e.preventDefault();
+
+        if ($input.attr('type') === 'password') {
+            inputType = 'text';
+        }
+
+        $input.attr('type', inputType);
+    }
+
+    $('.password-toggle').on('click', onPasswordToggle);
+
     form.context.on('submit', onRegistration);
 
     form.data({
