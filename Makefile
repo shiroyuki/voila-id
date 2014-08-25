@@ -1,5 +1,7 @@
 PYI=python
-SERVICE_FLAG=
+PYI_FLAG=
+SERVER=python
+SERVER_FLAG=-k tornado
 STATIC_SOURCE_PATH=docs/source
 STATIC_DOCTREE_PATH=docs/build/doctrees
 STATIC_HTML_PATH=docs/build/html
@@ -14,8 +16,11 @@ default:
 	@echo
 	@echo 'For more options, run "./console".'
 
-service: css
-	@$(PYI) voila_id.py $(SERVICE_FLAG)
+service:
+	@$(PYI) voila_id.py $(PYI_FLAG)
+
+unicorn_service:
+	@gunicorn $(SERVER_FLAG) voila_id:wsgiapp
 
 web:
 	sphinx-build -b html -d $(STATIC_DOCTREE_PATH) $(STATIC_SOURCE_PATH) $(STATIC_HTML_PATH)
